@@ -15,11 +15,11 @@
 <body>
   <div class="uk-position-center-right uk-position-medium uk-position-fixed uk-position-z-index">
     <ul class="uk-dotnav uk-dotnav-vertical">
-      <li class="home uk-active"><a href="#home" uk-scroll>Home</a></li>
-      <li class="about"><a href="#about" uk-scroll>About</a></li>
-      <li class="work"><a href="#work" uk-scroll>Work</a></li>
-      <li class="testimonials"><a href="#testimonials" uk-scroll>Testimonials</a></li>
-      <li class="contact"><a href="#contact" uk-scroll>Contact</a></li>
+      <li class="home uk-active"><a class="scroll-link" href="#home" uk-scroll>Home</a></li>
+      <li class="about"><a class="scroll-link" href="#about" uk-scroll>About</a></li>
+      <li class="work"><a class="scroll-link" href="#work" uk-scroll>Work</a></li>
+      <li class="testimonials"><a class="scroll-link" href="#testimonials" uk-scroll>Testimonials</a></li>
+      <li class="contact"><a class="scroll-link" href="#contact" uk-scroll>Contact</a></li>
     </ul>
   </div>
   <div id="home" class="uk-background-default uk-position-relative" uk-height-viewport>
@@ -40,9 +40,58 @@
   <script>
     window.onload = () => {
       console.log("loaded");
-      let currentPosition = ""
+      let canScroll = true;
+      let currentScrollPosition = 0;
+      let linkPosition = 0;
+      let home = document.querySelector(".home");
+      let homeLink = document.querySelector(".home a");
+      let about = document.querySelector(".about");
+      let aboutLink = document.querySelector(".about a");
+      let work = document.querySelector(".work");
+      let workLink = document.querySelector(".work a");
+      let testimonials = document.querySelector(".testimonials");
+      let testimonialsLink = document.querySelector(".testimonials a");
+      let contact = document.querySelector(".contact");
+      let contactLink = document.querySelector(".contact a");
+      let positionArr = [home, about, work, testimonials, contact];
+      let positionClickArr = [homeLink, aboutLink, workLink, testimonialsLink, contactLink];
+
+      UIkit.util.on(".scroll-link", "scrolled", () => {
+        // alert("Done.");
+        console.log("done scrolling");
+        currentScrollPosition = window.pageYOffset;
+        canScroll = true;
+        console.log("here1: " + canScroll);
+      });
+
       window.onscroll = () => {
-        console.log(window.pageYOffset);
+        console.log("here2: " + canScroll);
+        if (canScroll == false) return;
+        canScroll = false;
+        console.log("current: " + currentScrollPosition);
+        console.log("scroll: " + window.pageYOffset);
+        if (currentScrollPosition < window.pageYOffset) {
+          // currentScrollPosition = window.pageYOffset;
+          scrollDown();
+        } else if (currentScrollPosition > window.pageYOffset) {
+          // currentScrollPosition = window.pageYOffset;
+          scrollUp();
+        }
+      }
+      function scrollDown() {
+        console.log("in scroll down");
+        if (linkPosition + 1 <= (positionArr.length - 1)) {
+          linkPosition++;
+          positionClickArr[linkPosition].click();
+        }
+      }
+      function scrollUp() {
+        console.log("in scroll up");
+        // console.log("link position");
+        if (linkPosition - 1 >= 0) {
+          linkPosition--;
+          positionClickArr[linkPosition].click();
+        }
       }
     }
   </script>
