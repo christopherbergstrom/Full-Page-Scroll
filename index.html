@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- UIkit CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/css/uikit.min.css" />
+  <!-- UIkit JS -->
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/js/uikit-icons.min.js"></script>
+</head>
+
+<body>
+  <div class="uk-position-center-right uk-position-medium uk-position-fixed uk-position-z-index">
+    <ul class="uk-dotnav uk-dotnav-vertical">
+      <li class="home uk-active"><a href="#home" uk-scroll>Home</a></li>
+      <li class="about"><a href="#about" uk-scroll>About</a></li>
+      <li class="work"><a href="#work" uk-scroll>Work</a></li>
+      <li class="testimonials"><a href="#testimonials" uk-scroll>Testimonials</a></li>
+      <li class="contact"><a href="#contact" uk-scroll>Contact</a></li>
+    </ul>
+  </div>
+  <div id="home" class="uk-background-default uk-position-relative" uk-height-viewport>
+    <h1 class="uk-position-center">Home</h1>
+  </div>
+  <div id="about" class="uk-background-muted uk-position-relative" uk-height-viewport>
+    <h1 class="uk-position-center">About</h1>
+  </div>
+  <div id="work" class="uk-background-primary uk-position-relative uk-light" uk-height-viewport>
+    <h1 class="uk-position-center">Work</h1>
+  </div>
+  <div id="testimonials" class="uk-background-secondary uk-position-relative uk-light" uk-height-viewport>
+    <h1 class="uk-position-center">Testimonials</h1>
+  </div>
+  <div id="contact" class="uk-background-muted uk-position-relative" uk-height-viewport>
+    <h1 class="uk-position-center">Contact</h1>
+  </div>
+  <script>
+    window.onload = () => {
+      console.log("loaded");
+      let currentPosition = ""
+      window.onscroll = () => {
+        console.log(window.pageYOffset);
+      }
+    }
+  </script>
+</body>
+
+</html>
